@@ -1,0 +1,349 @@
+openapi: 3.0.1
+info:
+  title: BreakDownAPI
+  version: 1.0.0
+  description: Backend API for the BreakDown app service.
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  contact:
+    email: you@your-company.com
+servers:
+  - url: 'https://ourwebapp20200123033131.azurewebsites.net/'
+paths:
+  /tickets:
+    get:
+      summary: Fetch service tickets
+      tags:
+        - ServiceTicketOps
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceTicket'
+        '400':
+          description: bad input parameter
+          content: {}
+      operationId: search Tickets
+      parameters:
+        - name: skip
+          in: query
+          description: number of records to skip for pagination
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of records to return
+          schema:
+            maximum: 50
+            minimum: 0
+            type: integer
+            format: int32
+        - schema:
+            type: string
+          in: query
+          name: sortBy
+          description: sort the results based on this field
+      description: 'By passing in the appropriate options, you can search for available tickets in the system'
+    post:
+      tags:
+        - ServiceTicketOps
+      summary: adds an service Ticket
+      description: Adds an Ticket to the system
+      operationId: addTicket
+      requestBody:
+        description: Ticket item to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceTicket'
+        required: false
+      responses:
+        '201':
+          description: item created
+          content: {}
+        '400':
+          description: 'invalid input, object invalid'
+          content: {}
+        '409':
+          description: an existing item already exists
+          content: {}
+      x-codegen-request-body-name: ServiceTicket
+    put:
+      tags:
+        - ServiceTicketOps
+      summary: adds an service Ticket
+      description: Updates an Ticket to the system
+      operationId: updateTicket
+      requestBody:
+        description: Ticket item to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceTicket'
+        required: false
+      responses:
+        '201':
+          description: item updated
+          content: {}
+        '400':
+          description: 'invalid input, object invalid'
+          content: {}
+        '409':
+          description: an existing item already exists
+          content: {}
+      x-codegen-request-body-name: ServiceTicket
+    parameters: []
+  /users:
+    parameters: []
+    get:
+      summary: Query Users
+      tags:
+        - UserOps
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppUser'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      operationId: getUsers
+      description: ''
+      parameters:
+        - name: skip
+          in: query
+          description: number of records to skip for pagination
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of records to return
+          schema:
+            maximum: 50
+            minimum: 0
+            type: integer
+            format: int32
+    post:
+      summary: ''
+      operationId: createUser
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      description: Create a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppUser'
+        description: ''
+  '/users/{userID}':
+    parameters:
+      - schema:
+          type: string
+        name: userID
+        in: path
+        required: true
+    get:
+      summary: Get specific user
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppUser'
+      operationId: getUser
+      description: ''
+    put:
+      summary: ''
+      operationId: updateUser
+      responses:
+        '200':
+          description: OK
+      description: "Update part of a user's records"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppUser'
+        description: ''
+  '/users/{userID}/tickets':
+    parameters:
+      - schema:
+          type: string
+        name: userID
+        in: path
+        required: true
+    get:
+      summary: Get tickets for user
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServiceTicket'
+      operationId: getUserTickets
+      description: Return tickets related to a specific user.
+components:
+  schemas:
+    AppUser:
+      type: object
+      title: ''
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        role:
+          type: string
+          description: 'Customer, Driver, or Dispatcher'
+          enum:
+            - Driver
+            - Customer
+            - Dispatcher
+        dateActive:
+          type: string
+          description: The last time the user logged in.
+          format: date-time
+        dateCreated:
+          type: string
+          description: |
+            Date the user was created.
+          format: date-time
+      required:
+        - id
+        - name
+    ServiceTicket:
+      type: object
+      description: ''
+      title: ''
+      properties:
+        ticketID:
+          type: string
+          format: uuid
+        dateCreated:
+          type: string
+          format: date-time
+          example: '2016-08-29T09:12:33.001Z'
+        customer:
+          $ref: '#/components/schemas/UserStub'
+        status:
+          type: string
+        serviceLocation:
+          $ref: '#/components/schemas/Location'
+        serviceDistance:
+          type: number
+        comments:
+          type: string
+        serviceType:
+          type: string
+        custVehicle:
+          $ref: '#/components/schemas/Vehicle'
+        driver:
+          $ref: '#/components/schemas/UserStub'
+        serviceVehicle:
+          $ref: '#/components/schemas/Vehicle'
+      required:
+        - dateCreated
+        - customer
+        - serviceType
+    TicketArray:
+      title: TicketArray
+      type: array
+      description: ''
+      items:
+        $ref: '#/components/schemas/ServiceTicket'
+    Vehicle:
+      title: Vehicle
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+    TicketStub:
+      title: TicketStub
+      type: object
+      properties:
+        id:
+          type: string
+        user:
+          $ref: '#/components/schemas/AppUser'
+        serviceLocation:
+          $ref: '#/components/schemas/Location'
+      description: ''
+    Location:
+      title: Location
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+          pattern: "^\\d{5}(-\\d{4})?$"
+        GPS:
+          type: array
+          items:
+            type: number
+    UserStub:
+      title: UserStub
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        role:
+          type: string
+          description: 'Customer, Driver, or Dispatcher'
+          enum:
+            - Driver
+            - Customer
+            - Dispatcher
+        name:
+          type: string
+      required:
+        - id
+        - name
+tags:
+  - name: ServiceTicketOps
+    description: Calls requesting/submitting service tickets

@@ -1,0 +1,86 @@
+@startuml GetUserTickets Sequence
+title GetUserTickets()
+
+actor Client
+
+box "BreakDown SPA" 
+    participant API
+    participant "Ticket\nManager" as TicketMan
+end box
+
+Client -> API: Query Tickets{userID}
+activate API
+
+API -> TicketMan : Pass query params 
+activate TicketMan
+database MongoDB
+
+TicketMan -> MongoDB: Send Query
+activate MongoDB
+return Results
+TicketMan -> TicketMan : Process results
+note left of TicketMan
+	Ticket[] 
+end note
+API <-- TicketMan : 
+
+deactivate TicketMan
+Client <-- API: GET Response
+@enduml
+
+
+
+
+@startuml CreateTicket Sequence
+title CreateTicket()
+
+actor Client
+
+box "BreakDown SPA" 
+    participant API as "API\n Controller"
+    participant "Ticket\nManager" as TicketMan
+end box
+
+database MongoDB
+
+note right of Client
+	TicketStub 
+end note
+Client -> API: 
+activate API
+API -> TicketMan : Pass stub
+activate TicketMan
+TicketMan -> TicketMan : Build ticket \n from stub
+
+TicketMan -> MongoDB: Insert Ticket
+activate MongoDB
+TicketMan <-- MongoDB: Response
+deactivate MongoDB
+API <-- TicketMan : 
+deactivate TicketMan
+Client <-- API: POST Response
+deactivate API
+@enduml
+
+
+
+@startuml ControllerAct_NewTicket
+title New Ticket Activity
+|API Controller|
+start
+: TicketStub provided by client;
+|#AntiqueWhite|API Service|
+if (Required info present)
+    |API Controller|
+    : Response: INVALID INPUT;
+    end
+else
+    |API Service|
+    : Build ticket; 
+    : Insert ticket into DB;
+
+endif
+|API Controller|
+: Response OK;
+stop
+@enduml

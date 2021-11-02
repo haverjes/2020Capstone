@@ -1,0 +1,173 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\jesse\\Documents\\GitHub\\2020Capstone\\Project\\OurWebApp\\GenerateTestData\\GenerateTestData.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\jesse\\Documents\\GitHub\\2020Capstone\\Project\\OurWebApp\\GenerateTestData\\GenerateTestData.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\jesse\\Documents\\GitHub\\2020Capstone\\Project\\OurWebApp\\GenerateTestData\\GenerateTestData.csproj",
+        "projectName": "GenerateTestData",
+        "projectPath": "C:\\Users\\jesse\\Documents\\GitHub\\2020Capstone\\Project\\OurWebApp\\GenerateTestData\\GenerateTestData.csproj",
+        "packagesPath": "C:\\Users\\jesse\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jesse\\Documents\\GitHub\\2020Capstone\\Project\\OurWebApp\\GenerateTestData\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\jesse\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\jesse\\Documents\\GitHub\\2020Capstone\\Project\\OurWebApp\\OurWebApp\\OurWebApp.csproj": {
+                "projectPath": "C:\\Users\\jesse\\Documents\\GitHub\\2020Capstone\\Project\\OurWebApp\\OurWebApp\\OurWebApp.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Faker.Net": {
+              "target": "Package",
+              "version": "[1.3.56, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.10.2, )"
+            },
+            "NBuilder": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\jesse\\Documents\\GitHub\\2020Capstone\\Project\\OurWebApp\\OurWebApp\\OurWebApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\jesse\\Documents\\GitHub\\2020Capstone\\Project\\OurWebApp\\OurWebApp\\OurWebApp.csproj",
+        "projectName": "OurWebApp",
+        "projectPath": "C:\\Users\\jesse\\Documents\\GitHub\\2020Capstone\\Project\\OurWebApp\\OurWebApp\\OurWebApp.csproj",
+        "packagesPath": "C:\\Users\\jesse\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jesse\\Documents\\GitHub\\2020Capstone\\Project\\OurWebApp\\OurWebApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\jesse\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.AspNetCore.SpaServices.Extensions": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.TypeScript.MSBuild": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.8.3, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.10.2, )"
+            },
+            "NSwag.AspNetCore": {
+              "target": "Package",
+              "version": "[13.2.3, )"
+            },
+            "RandomDataGenerator.Net": {
+              "target": "Package",
+              "version": "[1.0.10, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
